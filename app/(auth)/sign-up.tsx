@@ -14,19 +14,19 @@ const SignUp = () => {
 
   const submit = async () => {
     if (!form.username || !form.email || !form.password) {
-      Alert.alert("Error", "Please fill in all fields")
+      Alert.alert("Error", "Please fill in all fields");
     }
 
-    setIsSubmiting(true)
+    setIsSubmiting(true);
 
     try {
       const result = await createUser(form.email, form.password, form.username);
-
+      
       // set it to gloabal state...
 
-      router.replace("/home")
+      router.replace("/home");
     } catch (error) {
-      throw new Error
+      throw Error;
       // Alert.alert("Error", error.message)
     } finally {
       setIsSubmiting(false);
@@ -74,7 +74,12 @@ const SignUp = () => {
             <Text className="text-gray-100 font-pregular text-lg">
               Already have an account?
             </Text>
-            <Link href="/sign-in" className="text-lg font-psemibold text-secondary-100">Sign In</Link>
+            <Link
+              href="/sign-in"
+              className="text-lg font-psemibold text-secondary-100"
+            >
+              Sign In
+            </Link>
           </View>
         </View>
       </ScrollView>

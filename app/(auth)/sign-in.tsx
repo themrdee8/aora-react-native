@@ -4,14 +4,35 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "@/constants";
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { createUser, signIn } from "@/lib/appwrite";
+import { Alert } from "react-native";
 
 const SignIn = () => {
   const [form, setForm] = useState({ email: "", password: "" });
 
   const [isSubmiting, setIsSubmiting] = useState(false);
 
-  const submit = () => {};
+  const submit = async () => {
+    if (!form.email || !form.password) {
+      Alert.alert("Error", "Please fill in all fields");
+    }
+
+    setIsSubmiting(true);
+
+    try {
+      await signIn(form.email, form.password);
+
+      // set it to gloabal state...
+      Alert.alert("Success", "User has successfully signed in");
+      router.replace("/home");
+    } catch (error) {
+      console.error(error);
+      // Alert.alert("Error", error.message)
+    } finally {
+      setIsSubmiting(false);
+    }
+  };
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -48,7 +69,12 @@ const SignIn = () => {
             <Text className="text-gray-100 font-pregular text-lg">
               Don't have an account?
             </Text>
-            <Link href="/sign-up" className="text-lg font-psemibold text-secondary-100">Sign Up</Link>
+            <Link
+              href="/sign-up"
+              className="text-lg font-psemibold text-secondary-100"
+            >
+              Sign Up
+            </Link>
           </View>
         </View>
       </ScrollView>
