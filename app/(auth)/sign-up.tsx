@@ -21,13 +21,13 @@ const SignUp = () => {
 
     try {
       const result = await createUser(form.email, form.password, form.username);
-      
+
       // set it to gloabal state...
 
       router.replace("/home");
-    } catch (error) {
-      throw Error;
-      // Alert.alert("Error", error.message)
+    } catch (error: any) {
+      // throw Error;
+      Alert.alert("Error", error.message);
     } finally {
       setIsSubmiting(false);
     }

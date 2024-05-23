@@ -26,9 +26,9 @@ const SignIn = () => {
       // set it to gloabal state...
       Alert.alert("Success", "User has successfully signed in");
       router.replace("/home");
-    } catch (error) {
-      console.error(error);
-      // Alert.alert("Error", error.message)
+    } catch (error: any) {
+      // console.error(error);
+      Alert.alert("Error", error.message);
     } finally {
       setIsSubmiting(false);
     }
