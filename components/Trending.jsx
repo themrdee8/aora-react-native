@@ -16,7 +16,7 @@ const zoomIn = {
     scale: 0.9,
   },
   1: {
-    scale: 1.04,
+    scale: 1.12,
   },
 };
 
@@ -25,7 +25,7 @@ const zoomOut = {
     scale: 1,
   },
   1: {
-    scale: 0.9,
+    scale: 0.88,
   },
 };
 
@@ -40,7 +40,7 @@ const TrendingItem = ({ activeItem, item }) => {
       {play ? (
         <Video
           source={{ uri: item.video }}
-          className="w-52 h-72 rounded-[35px] mt-3 bg-white/10"
+          className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
           shouldPlay
@@ -52,13 +52,13 @@ const TrendingItem = ({ activeItem, item }) => {
         />
       ) : (
         <TouchableOpacity
-          className="justify-center items-center relative"
+          className="justify-center items-center relative flex"
           activeOpacity={0.7}
           onPress={() => setPlay(true)}
         >
           <ImageBackground
             source={{ uri: item.thumbnail }}
-            className="w-52 h-72 rounded-[35px] overflow-hidden shadow-lg shadow-black/40"
+            className="w-52 h-72 rounded-[33px] my-5 overflow-hidden shadow-lg shadow-black/40"
             resizeMode="cover"
           />
 
