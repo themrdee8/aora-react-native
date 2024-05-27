@@ -5,10 +5,12 @@ import { images } from "@/constants";
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
 import { Link, router } from "expo-router";
-import { createUser, signIn } from "@/lib/appwrite";
+import { createUser, getCurrentUser, signIn } from "@/lib/appwrite";
 import { Alert } from "react-native";
+import { useGlobalContext } from "@/context/GlobalProvider";
 
 const SignIn = () => {
+  const { setUser, setIsLoggedIn } = useGlobalContext();
   const [form, setForm] = useState({ email: "", password: "" });
 
   const [isSubmiting, setIsSubmiting] = useState(false);
@@ -23,8 +25,11 @@ const SignIn = () => {
     try {
       await signIn(form.email, form.password);
 
-      // set it to gloabal state...
-      Alert.alert("Success", "User has successfully signed in");
+      const result = await getCurrentUser();
+
+      setUser(result);
+      setIsLoggedIn(true);
+      // Alert.alert("Success", "User has successfully signed in");
       router.replace("/home");
     } catch (error: any) {
       // console.error(error);
