@@ -4,9 +4,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { GlobalProvider } from "@/context/GlobalProvider";
 import { StatusBar } from "expo-status-bar";
-// import "react-native-reanimated";
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -29,10 +26,6 @@ export default function RootLayout() {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded, error]);
-
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
 
   if (!fontsLoaded && !error) return null;
 

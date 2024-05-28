@@ -29,7 +29,6 @@ const SignUp = () => {
 
       router.replace("/home");
     } catch (error: any) {
-      // throw Error;
       Alert.alert("Error", error.message);
     } finally {
       setIsSubmiting(false);

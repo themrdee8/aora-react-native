@@ -5,7 +5,7 @@ import { images } from "@/constants";
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
 import { Link, router } from "expo-router";
-import { createUser, getCurrentUser, signIn } from "@/lib/appwrite";
+import { getCurrentUser, signIn } from "@/lib/appwrite";
 import { Alert } from "react-native";
 import { useGlobalContext } from "@/context/GlobalProvider";
 
@@ -29,10 +29,8 @@ const SignIn = () => {
 
       setUser(result);
       setIsLoggedIn(true);
-      // Alert.alert("Success", "User has successfully signed in");
       router.replace("/home");
     } catch (error: any) {
-      // console.error(error);
       Alert.alert("Error", error.message);
     } finally {
       setIsSubmiting(false);
